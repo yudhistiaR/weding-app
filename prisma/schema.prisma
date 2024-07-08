@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+}
+
+model TamuUndangan {
+  id         Int    @id @default(autoincrement())
+  nama_tamu  String
+  nomor_meja String
+  keterangan String
+}
+
+model JadwalAcara {
+  id            Int      @id @unique @default(autoincrement())
+  nama_pasangan String
+  tanggal       DateTime
+  tempat        String
+  keterangan    String
+}
+
+model BudgetPernikahan {
+  id            Int      @id @default(autoincrement())
+  nama_pasangan String
+  tanggal       DateTime
+  venue         String
+  catering      String
+  pakaian       String
+  dekorasi      String
+  fotografi     String
+  undangan      String
+  musik_hiburan String
+  transport     String
+  lainnya       String
+}
+
+model Vendor {
+  id           Int    @id @default(autoincrement())
+  jenis_vendor String
+  nama_vendor  String
+  kontak       String
+  harga        String
+  catatan      String
+}
+
+model Keuangan {
+  id          Int    @id @default(autoincrement())
+  kategori    String
+  deskripsi   String
+  pendapatan  String
+  pengeluaran String
+}
+
+model RekapitulasiResepsi {
+  id        Int    @id @default(autoincrement())
+  kategori  String
+  deskripsi String
+  jumlah    String
+  total     String
+}
+
+model Fotografi {
+  id        Int    @id @default(autoincrement())
+  kategori  String
+  deskripsi String
+  detail    String
+}
+
+model Progress {
+  id Int @id @default(autoincrement())
+  tugas String
+  tanggal_mulai String
+  tanggal_selesai String
+  status String
+  catatan String
+}
